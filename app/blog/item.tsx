@@ -9,7 +9,7 @@ const Item = ({ post }: ItemProps) => {
   console.log(post)
   const { id, avatar, name, title } = post
   return (
-    <li>
+    <li className="item">
       <Link href={`/blog/${id}`}>
         <div className="img">
           <img src={avatar} alt={name} />
