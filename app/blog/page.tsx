@@ -1,5 +1,6 @@
 'use client'
 import { Suspense, useEffect, useState } from 'react'
+import List from './list'
 
 export default function Page() {
   // Fetch data directly in a Server Component
@@ -23,12 +24,3 @@ export default function Page() {
   )
 }
 //@ts-ignore
-function List({ recentPosts }) {
-  return (
-    <ul>
-      {recentPosts.map((post: any) => (
-        <li key={post.id}>{post.title}</li>
-      ))}
-    </ul>
-  )
-}
