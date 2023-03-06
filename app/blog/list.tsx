@@ -1,6 +1,6 @@
 import Item from './item'
 
-interface BlogData {
+interface recentPostsProps {
   avatar: string
   createdAt: string
   id: string
@@ -8,15 +8,12 @@ interface BlogData {
   title: string
 }
 
-interface HomeProps {
-  recentPosts: BlogData[]
-}
 
-const List: React.FC<HomeProps> = ({ recentPosts }) => {
+const List = ({ recentPosts:Array<recentPostsProps> }) => {
   return (
     <ul>
       {recentPosts.map((post) => (
-        <Item key={post.id} post={post} />
+        <Item key={post.id} post={...post} />
       ))}
     </ul>
   )
