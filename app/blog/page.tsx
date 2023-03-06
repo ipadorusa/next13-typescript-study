@@ -1,32 +1,33 @@
 'use client'
+import { Suspense, useEffect, useState } from 'react'
 
-import { Suspense } from 'react'
-
-async function getPosts() {
-  const res = await fetch('https://63d271c606556a0fdd3c55ed.mockapi.io/articles')
-  const posts = await res.json()
-  return posts
-}
-
-export default async function Page() {
+export default function Page() {
   // Fetch data directly in a Server Component
-  const recentPosts = await getPosts()
+  const [recentPosts, setRecentPosts] = useState([])
+  useEffect(() => {
+    async function getPosts() {
+      const res = await fetch('https://63d271c606556a0fdd3c55ed.mockapi.io/articles')
+      const posts = await res.json()
+      setRecentPosts(posts)
+    }
+    getPosts()
+  }, [recentPosts])
   // Forward fetched data to your Client Component
   //@ts-ignore
   return (
-    <Suspense>
-      <List recentPosts={recentPosts} />
-    </Suspense>
+    <div>
+      <Suspense fallback={<p>Loading</p>}>
+        <List recentPosts={recentPosts} />
+      </Suspense>
+    </div>
   )
 }
 //@ts-ignore
-async function List({ recentPosts }: { recentPosts: any }): Promise<JSX.Element> {
-  const albums = await recentPosts
-
+function List({ recentPosts }) {
   return (
     <ul>
-      {albums.map((album: any) => (
-        <li key={album.id}>{album.name}</li>
+      {recentPosts.map((post: any) => (
+        <li key={post.id}>{post.title}</li>
       ))}
     </ul>
   )
