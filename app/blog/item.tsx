@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import { recentPostsProps } from './type'
 
 type ItemProps = {
-  title: string
+  post: recentPostsProps
 }
 
-const Item: React.FunctionComponent<ItemProps> = ({ post }) => {
+const Item = ({ post }: ItemProps) => {
   console.log(post)
   const { id, avatar, name, title } = post
   return (

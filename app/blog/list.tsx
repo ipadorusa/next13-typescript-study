@@ -1,19 +1,11 @@
 import Item from './item'
+import { recentPostsProps } from './type'
 
-interface recentPostsProps {
-  avatar: string
-  createdAt: string
-  id: string
-  name: string
-  title: string
-}
-
-
-const List = ({ recentPosts:Array<recentPostsProps> }) => {
+const List = ({ recentPosts }: { recentPosts: recentPostsProps[] }) => {
   return (
     <ul>
       {recentPosts.map((post) => (
-        <Item key={post.id} post={...post} />
+        <Item key={post.id} post={post} />
       ))}
     </ul>
   )

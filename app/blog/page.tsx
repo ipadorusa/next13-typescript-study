@@ -13,8 +13,7 @@ export default function Page() {
     }
     getPosts()
   }, [recentPosts])
-  // Forward fetched data to your Client Component
-  //@ts-ignore
+
   return (
     <div>
       <Suspense fallback={<p>Loading</p>}>
